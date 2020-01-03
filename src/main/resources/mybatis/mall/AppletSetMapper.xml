@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.mall.set.mapper.AppletSetMapper">
+
+    <resultMap type="AppletSet" id="AppletSetResult">
+        <result property="appid"    column="appid"    />
+        <result property="appsecret"    column="appsecret"    />
+        <result property="mchid"    column="mchid"    />
+        <result property="paySignKey"    column="pay_sign_key"    />
+        <result property="certname"    column="certname"    />
+        <result property="notifyurl"    column="notifyurl"    />
+        <result property="templateid1"    column="templateid1"    />
+        <result property="templateid2"    column="templateid2"    />
+        <result property="templateid3"    column="templateid3"    />
+        <result property="templateid4"    column="templateid4"    />
+        <result property="templateid5"    column="templateid5"    />
+        <result property="templateid6"    column="templateid6"    />
+        <result property="storeId"    column="store_id"    />
+    </resultMap>
+
+    <sql id="selectAppletSetVo">
+        select appid, appsecret, mchid, pay_sign_key, certname, notifyurl, templateid1, templateid2, templateid3, templateid4, templateid5, templateid6, store_id from sys_applet_set
+    </sql>
+
+    <select id="selectAppletSetList" parameterType="AppletSet" resultMap="AppletSetResult">
+        <include refid="selectAppletSetVo"/>
+        <where>
+            <if test="appid != null  and appid != ''"> and appid = #{appid}</if>
+            <if test="appsecret != null  and appsecret != ''"> and appsecret = #{appsecret}</if>
+            <if test="mchid != null  and mchid != ''"> and mchid = #{mchid}</if>
+            <if test="paySignKey != null  and paySignKey != ''"> and pay_sign_key = #{paySignKey}</if>
+            <if test="certname != null  and certname != ''"> and certname like concat('%', #{certname}, '%')</if>
+            <if test="notifyurl != null  and notifyurl != ''"> and notifyurl = #{notifyurl}</if>
+            <if test="templateid1 != null  and templateid1 != ''"> and templateid1 = #{templateid1}</if>
+            <if test="templateid2 != null  and templateid2 != ''"> and templateid2 = #{templateid2}</if>
+            <if test="templateid3 != null  and templateid3 != ''"> and templateid3 = #{templateid3}</if>
+            <if test="templateid4 != null  and templateid4 != ''"> and templateid4 = #{templateid4}</if>
+            <if test="templateid5 != null  and templateid5 != ''"> and templateid5 = #{templateid5}</if>
+            <if test="templateid6 != null  and templateid6 != ''"> and templateid6 = #{templateid6}</if>
+        </where>
+    </select>
+
+    <select id="selectAppletSetById" parameterType="Long" resultMap="AppletSetResult">
+        <include refid="selectAppletSetVo"/>
+        where store_id = #{storeId}
+    </select>
+
+    <insert id="insertAppletSet" parameterType="AppletSet">
+        insert into sys_applet_set
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="appid != null  and appid != ''">appid,</if>
+            <if test="appsecret != null  and appsecret != ''">appsecret,</if>
+            <if test="mchid != null  and mchid != ''">mchid,</if>
+            <if test="paySignKey != null  and paySignKey != ''">pay_sign_key,</if>
+            <if test="certname != null  and certname != ''">certname,</if>
+            <if test="notifyurl != null  and notifyurl != ''">notifyurl,</if>
+            <if test="templateid1 != null  and templateid1 != ''">templateid1,</if>
+            <if test="templateid2 != null  and templateid2 != ''">templateid2,</if>
+            <if test="templateid3 != null  and templateid3 != ''">templateid3,</if>
+            <if test="templateid4 != null  and templateid4 != ''">templateid4,</if>
+            <if test="templateid5 != null  and templateid5 != ''">templateid5,</if>
+            <if test="templateid6 != null  and templateid6 != ''">templateid6,</if>
+            <if test="storeId != null ">store_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="appid != null  and appid != ''">#{appid},</if>
+            <if test="appsecret != null  and appsecret != ''">#{appsecret},</if>
+            <if test="mchid != null  and mchid != ''">#{mchid},</if>
+            <if test="paySignKey != null  and paySignKey != ''">#{paySignKey},</if>
+            <if test="certname != null  and certname != ''">#{certname},</if>
+            <if test="notifyurl != null  and notifyurl != ''">#{notifyurl},</if>
+            <if test="templateid1 != null  and templateid1 != ''">#{templateid1},</if>
+            <if test="templateid2 != null  and templateid2 != ''">#{templateid2},</if>
+            <if test="templateid3 != null  and templateid3 != ''">#{templateid3},</if>
+            <if test="templateid4 != null  and templateid4 != ''">#{templateid4},</if>
+            <if test="templateid5 != null  and templateid5 != ''">#{templateid5},</if>
+            <if test="templateid6 != null  and templateid6 != ''">#{templateid6},</if>
+            <if test="storeId != null ">#{storeId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppletSet" parameterType="AppletSet">
+        update sys_applet_set
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="appid != null  and appid != ''">appid = #{appid},</if>
+            <if test="appsecret != null  and appsecret != ''">appsecret = #{appsecret},</if>
+            <if test="mchid != null  and mchid != ''">mchid = #{mchid},</if>
+            <if test="paySignKey != null  and paySignKey != ''">pay_sign_key = #{paySignKey},</if>
+            <if test="certname != null  and certname != ''">certname = #{certname},</if>
+            <if test="notifyurl != null  and notifyurl != ''">notifyurl = #{notifyurl},</if>
+            <if test="templateid1 != null  and templateid1 != ''">templateid1 = #{templateid1},</if>
+            <if test="templateid2 != null  and templateid2 != ''">templateid2 = #{templateid2},</if>
+            <if test="templateid3 != null  and templateid3 != ''">templateid3 = #{templateid3},</if>
+            <if test="templateid4 != null  and templateid4 != ''">templateid4 = #{templateid4},</if>
+            <if test="templateid5 != null  and templateid5 != ''">templateid5 = #{templateid5},</if>
+            <if test="templateid6 != null  and templateid6 != ''">templateid6 = #{templateid6},</if>
+        </trim>
+        where store_id = #{storeId}
+    </update>
+
+    <delete id="deleteAppletSetById" parameterType="Long">
+        delete from sys_applet_set where store_id = #{storeId}
+    </delete>
+
+    <delete id="deleteAppletSetByIds" parameterType="String">
+        delete from sys_applet_set where store_id in
+        <foreach item="storeId" collection="array" open="(" separator="," close=")">
+            #{storeId}
+        </foreach>
+    </delete>
+
+</mapper>

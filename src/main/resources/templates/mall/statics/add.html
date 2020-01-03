@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('新增【请填写功能名称】')"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-statics-add">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">添加商品：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="goodsCount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支付订单数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="payOrderCount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">文章数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="articleCount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支付金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="payAmount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">添加会员数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="memberCount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商户：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeId" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">没有支付订单数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="notPayOrderCount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">没有支付订单金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="notPayAmount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商户：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeName" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/statics"
+    $("#form-statics-add").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-statics-add').serialize());
+        }
+    }
+</script>
+</body>
+</html>

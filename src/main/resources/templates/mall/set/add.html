@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增【请填写功能名称】')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-set-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="appid" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="appsecret" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="mchid" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="paySignKey" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="certname" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="notifyurl" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">下单通知模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid1" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid2" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid3" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid4" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid5" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid6" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script type="text/javascript">
+        var prefix = ctx + "system/set"
+        $("#form-set-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-set-add').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改【请填写功能名称】')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-set-edit" th:object="${appletSet}">
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">appId：</label>
+                <div class="col-sm-8">
+                    <input name="appid" th:field="*{appid}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">appSecret：</label>
+                <div class="col-sm-8">
+                    <input name="appsecret" th:field="*{appsecret}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">mchId：</label>
+                <div class="col-sm-8">
+                    <input name="mchid" th:field="*{mchid}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">paySignKey：</label>
+                <div class="col-sm-8">
+                    <input name="paySignKey" th:field="*{paySignKey}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">退款证书：</label>
+                <div class="col-sm-8">
+                    <input name="certname" th:field="*{certname}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">支付回掉地址：</label>
+                <div class="col-sm-8">
+                    <input name="notifyurl" th:field="*{notifyurl}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">下单通知模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid1" th:field="*{templateid1}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">支付成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid2" th:field="*{templateid2}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">发货成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid3" th:field="*{templateid3}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">收货成功模版：</label>
+                <div class="col-sm-8">
+                    <input name="templateid4" th:field="*{templateid4}" class="form-control" type="text">
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script type="text/javascript">
+        var prefix = ctx + "system/set";
+        $("#form-set-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-set-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

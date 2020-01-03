@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('新增店铺')"/>
+    <th:block th:include="include :: datetimepicker-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-store-add">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">短信数量：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="smsQuantity" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">注册类型：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="registerType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">到期时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="expireTime" placeholder="yyyy-MM-dd" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">尝试时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="tryTime" placeholder="yyyy-MM-dd" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">联系电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactMobile" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地区省：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressProvince" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所购物品计划时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="buyPlanTimes" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否选中：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isChecked" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否删除：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isDeleted" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">服务电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="servicePhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址名：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressLat" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">联系人名：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactName" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">删除时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="deleteTime" placeholder="yyyy-MM-dd" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">自己配置文件：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="diyProfile" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">行业：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="industryTwo" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isStar" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">尝试：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isTry" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">图标：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="logo" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址细节：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressDetail" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">计划id：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="planId" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支持，维持名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="supportName" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="name" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">1 通过 2 审核中 3 拒绝：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="status" type="radio" value="">
+                    <label th:for="status" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="uid" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">类型：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="type">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">联系QQ：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactQq" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressLng" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="lastLoginTime" placeholder="yyyy-MM-dd" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支持电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="supportPhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址区域：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressArea" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactQrcode" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">描述：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="description" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">行业1：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="industryOne" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址城市：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressCity" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="collect" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="hit" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: datetimepicker-js"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/store"
+    $("#form-store-add").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-store-add').serialize());
+        }
+    }
+
+    $("input[name='expireTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='tryTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='deleteTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='lastLoginTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+</script>
+</body>
+</html>

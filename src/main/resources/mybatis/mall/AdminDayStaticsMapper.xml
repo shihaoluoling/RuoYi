@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.mall.statics.mapper.AdminDayStaticsMapper">
+
+    <resultMap type="AdminDayStatics" id="AdminDayStaticsResult">
+        <result property="id" column="id"/>
+        <result property="goodsCount" column="goods_count"/>
+        <result property="payOrderCount" column="pay_order_count"/>
+        <result property="articleCount" column="article_count"/>
+        <result property="payAmount" column="pay_amount"/>
+        <result property="memberCount" column="member_count"/>
+        <result property="createTime" column="create_time"/>
+        <result property="storeId" column="store_id"/>
+        <result property="notPayOrderCount" column="not_pay_order_count"/>
+        <result property="notPayAmount" column="not_pay_amount"/>
+        <result property="storeName" column="store_name"/>
+    </resultMap>
+
+    <sql id="selectAdminDayStaticsVo">
+        select id, goods_count, pay_order_count, article_count, pay_amount, member_count, create_time, store_id, not_pay_order_count, not_pay_amount, store_name from admin_day_statics
+    </sql>
+
+    <select id="selectAdminDayStaticsList" parameterType="AdminDayStatics" resultMap="AdminDayStaticsResult">
+        <include refid="selectAdminDayStaticsVo"/>
+        <where>
+            <if test="goodsCount != null ">and goods_count = #{goodsCount}</if>
+            <if test="payOrderCount != null ">and pay_order_count = #{payOrderCount}</if>
+            <if test="articleCount != null ">and article_count = #{articleCount}</if>
+            <if test="payAmount != null ">and pay_amount = #{payAmount}</if>
+            <if test="memberCount != null ">and member_count = #{memberCount}</if>
+            <if test="storeId != null ">and store_id = #{storeId}</if>
+            <if test="notPayOrderCount != null ">and not_pay_order_count = #{notPayOrderCount}</if>
+            <if test="notPayAmount != null ">and not_pay_amount = #{notPayAmount}</if>
+            <if test="storeName != null  and storeName != ''">and store_name like concat('%', #{storeName}, '%')</if>
+        </where>
+    </select>
+
+    <select id="selectAdminDayStaticsById" parameterType="Long" resultMap="AdminDayStaticsResult">
+        <include refid="selectAdminDayStaticsVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertAdminDayStatics" parameterType="AdminDayStatics" useGeneratedKeys="true" keyProperty="id">
+        insert into admin_day_statics
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsCount != null ">goods_count,</if>
+            <if test="payOrderCount != null ">pay_order_count,</if>
+            <if test="articleCount != null ">article_count,</if>
+            <if test="payAmount != null ">pay_amount,</if>
+            <if test="memberCount != null ">member_count,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="storeId != null ">store_id,</if>
+            <if test="notPayOrderCount != null ">not_pay_order_count,</if>
+            <if test="notPayAmount != null ">not_pay_amount,</if>
+            <if test="storeName != null  and storeName != ''">store_name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsCount != null ">#{goodsCount},</if>
+            <if test="payOrderCount != null ">#{payOrderCount},</if>
+            <if test="articleCount != null ">#{articleCount},</if>
+            <if test="payAmount != null ">#{payAmount},</if>
+            <if test="memberCount != null ">#{memberCount},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="storeId != null ">#{storeId},</if>
+            <if test="notPayOrderCount != null ">#{notPayOrderCount},</if>
+            <if test="notPayAmount != null ">#{notPayAmount},</if>
+            <if test="storeName != null  and storeName != ''">#{storeName},</if>
+        </trim>
+    </insert>
+
+    <update id="updateAdminDayStatics" parameterType="AdminDayStatics">
+        update admin_day_statics
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsCount != null ">goods_count = #{goodsCount},</if>
+            <if test="payOrderCount != null ">pay_order_count = #{payOrderCount},</if>
+            <if test="articleCount != null ">article_count = #{articleCount},</if>
+            <if test="payAmount != null ">pay_amount = #{payAmount},</if>
+            <if test="memberCount != null ">member_count = #{memberCount},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="storeId != null ">store_id = #{storeId},</if>
+            <if test="notPayOrderCount != null ">not_pay_order_count = #{notPayOrderCount},</if>
+            <if test="notPayAmount != null ">not_pay_amount = #{notPayAmount},</if>
+            <if test="storeName != null  and storeName != ''">store_name = #{storeName},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAdminDayStaticsById" parameterType="Long">
+        delete from admin_day_statics where id = #{id}
+    </delete>
+
+    <delete id="deleteAdminDayStaticsByDate" parameterType="String">
+        delete from admin_day_statics where date_format(create_time,'%y%m%d') &lt;= date_format(#{createTime},'%y%m%d')
+    </delete>
+
+    <delete id="deleteAdminDayStaticsByIds" parameterType="String">
+        delete from admin_day_statics where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="selectAdminDayStaticsGroupBySId" parameterType="Long" resultMap="AdminDayStaticsResult">
+       SELECT store_id,sum(goods_count) goods_count, sum(pay_order_count) order_count,sum(article_count) article_count,sum(pay_amount) pay_amount,sum(member_count) member_count
+from admin_day_statics GROUP BY store_id
+    </select>
+
+</mapper>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('新增订单中所包含的商品')"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-item-add">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单id：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="orderId" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="orderSn" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productId" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="productPic"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productName" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productBrand" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productSn" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">销售价格：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productPrice" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">购买数量：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productQuantity" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品sku编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productSkuId" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品sku条码：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productSkuCode" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品分类id：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productCategoryId" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品的销售属性：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sp1" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品的销售属性：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sp2" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品的销售属性：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sp3" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品促销名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionName" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品促销分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionAmount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">优惠券优惠分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="couponAmount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">积分优惠分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="integrationAmount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">该商品经过优惠后的分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="realAmount" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">该商品经过优惠后的分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="giftIntegration" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">该商品经过优惠后的分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="giftGrowth" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品销售属性:[{"key":"颜色","value":"颜色"},{"key":"容量","value":"4G"}]：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="productAttr"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeId" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/item"
+    $("#form-item-add").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-item-add').serialize());
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('会员列表')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <p>所属店铺：</p>
+                            <input name="memberLevelId" type="text"/>
+                        </li>
+                        <li>
+                            <p>用户名：</p>
+                            <input name="username" type="text"/>
+                        </li>
+
+                        <li>
+                            <p>手机号码：</p>
+                            <input name="phone" type="text"/>
+                        </li>
+
+                        <li>
+                            <p>所属店铺：</p>
+                            <input name="storeId" type="text"/>
+                        </li>
+
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="mall:member:add">
+                <i class="fa fa-plus"></i> 添加
+            </a>
+            <a class="btn btn-primary single disabled" onclick="$.operate.edit()"
+               shiro:hasPermission="mall:member:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="mall:member:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="mall:member:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table data-mobile-responsive="true" id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('mall:member:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('mall:member:remove')}]];
+    var prefix = ctx + "mall/member";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "会员",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '编号',
+                    visible: false
+                },
+
+                {
+                    field: 'username',
+                    title: '用户名'
+                },
+
+                {
+                    field: 'nickname',
+                    title: '昵称'
+                },
+                {
+                    field: 'phone',
+                    title: '手机号码'
+                },
+                {
+                    field: 'memberLevelName',
+                    title: '会员等级'
+                },
+                {
+                    field: 'icon',
+                    title: '头像'
+                    ,
+                    formatter: function (value, row, index) {
+                        return '<img src="' + row.icon + '" width="50px" height="50px"> ';
+                    }
+                },
+                {
+                    field: 'gender',
+                    title: '性别'
+                },
+                {
+                    field: 'birthday',
+                    title: '生日'
+                },
+                {
+                    field: 'city',
+                    title: '所做城市'
+                },
+                {
+                    field: 'job',
+                    title: '职业'
+                },
+                {
+                    field: 'personalizedSignature',
+                    title: '个性签名'
+                },
+                {
+                    field: 'sourceType',
+                    title: '用户来源'
+                },
+                {
+                    field: 'integration',
+                    title: '积分'
+                },
+                {
+                    field: 'growth',
+                    title: '成长值'
+                },
+                {
+                    field: 'luckeyCount',
+                    title: '剩余抽奖次数'
+                },
+                {
+                    field: 'historyIntegration',
+                    title: '历史积分数量'
+                },
+                {
+                    field: 'avatar',
+                    title: '历史积分数量'
+                },
+                {
+                    field: 'weixinOpenid',
+                    title: '历史积分数量'
+                },
+                {
+                    field: 'invitecode',
+                    title: '历史积分数量'
+                },
+                {
+                    field: 'blance',
+                    title: '余额'
+                },
+
+                {
+                    field: 'storeId',
+                    title: '所属店铺'
+                },
+
+                {
+                    field: 'buyCount',
+                    title: '购买次数'
+                },
+                {
+                    field: 'buyMoney',
+                    title: '消费金额'
+                },
+
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

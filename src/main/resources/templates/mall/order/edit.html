@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('修改订单')"/>
+    <th:block th:include="include :: datetimepicker-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-order-edit" th:object="${omsOrder}">
+        <input name="id" th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否评论，1未评论，2已评论：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="memberId" required th:field="*{memberId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否评论，1未评论，2已评论：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="couponId" th:field="*{couponId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="orderSn" th:field="*{orderSn}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">用户帐号：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="memberUsername">[[*{memberUsername}]]</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单总金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="totalAmount" th:field="*{totalAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">应付金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="payAmount" th:field="*{payAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">运费金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="freightAmount" th:field="*{freightAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">促销优化金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionAmount" th:field="*{promotionAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">积分抵扣金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="integrationAmount" th:field="*{integrationAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">优惠券抵扣金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="couponAmount" th:field="*{couponAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">管理员后台调整订单使用的折扣金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="discountAmount" th:field="*{discountAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支付方式：0->未支付；1->支付宝；2->微信：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="payType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单来源：0->PC订单；1->app订单：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="sourceType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="status" type="radio" value="">
+                    <label th:for="status" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单类型：0->正常订单；1->秒杀订单：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="orderType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">物流公司(配送方式)：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="deliveryCompany" th:field="*{deliveryCompany}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">物流单号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="deliverySn" th:field="*{deliverySn}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">自动确认时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="autoConfirmDay" th:field="*{autoConfirmDay}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">可以获得的积分：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="integration" th:field="*{integration}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">可以活动的成长值：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="growth" th:field="*{growth}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">活动信息：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionInfo" th:field="*{promotionInfo}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">发票类型：0->不开发票；1->电子发票；2->纸质发票：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="billType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">发票抬头：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="billHeader" th:field="*{billHeader}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">发票内容：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="billContent" th:field="*{billContent}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">收票人电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="billReceiverPhone" th:field="*{billReceiverPhone}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">收票人邮箱：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="billReceiverEmail" th:field="*{billReceiverEmail}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">收货人姓名：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverName" th:field="*{receiverName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">收货人电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverPhone" th:field="*{receiverPhone}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">收货人邮编：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverPostCode" th:field="*{receiverPostCode}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">省份/直辖市：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverProvince" th:field="*{receiverProvince}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">城市：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverCity" th:field="*{receiverCity}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">区：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverRegion" th:field="*{receiverRegion}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">详细地址：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverDetailAddress" th:field="*{receiverDetailAddress}"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单备注：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="note">[[*{note}]]</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">确认收货状态：0->未确认；1->已确认：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="confirmStatus" type="radio" value="">
+                    <label th:for="confirmStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">删除状态：0->未删除；1->已删除：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="deleteStatus" required type="radio" value="">
+                    <label th:for="deleteStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">下单时使用的积分：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="useIntegration" th:field="*{useIntegration}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支付时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="paymentTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(omsOrder.paymentTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">发货时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="deliveryTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(omsOrder.deliveryTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">确认收货时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="receiveTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(omsOrder.receiveTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">评价时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="commentTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(omsOrder.commentTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">修改时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="modifyTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(omsOrder.modifyTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">修改时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="prepayId" th:field="*{prepayId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">修改时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="supplyId" th:field="*{supplyId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">修改时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="goodsId" th:field="*{goodsId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">修改时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="goodsName" th:field="*{goodsName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">修改时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="schoolId" th:field="*{schoolId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeId" th:field="*{storeId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="receiverId" th:field="*{receiverId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="groupId" th:field="*{groupId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否开发票 1=不发票 2=个人发票 3=公司发票：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="taxType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">发票内容：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="taxContent" th:field="*{taxContent}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">税号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="taxCode" th:field="*{taxCode}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">发票抬头：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="taxTitle" th:field="*{taxTitle}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否评论，1未评论，2已评论：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isComment" required th:field="*{isComment}" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: datetimepicker-js"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/order";
+    $("#form-order-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-order-edit').serialize());
+        }
+    }
+
+    $("input[name='paymentTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='deliveryTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='receiveTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='commentTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='modifyTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+</script>
+</body>
+</html>

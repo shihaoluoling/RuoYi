@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.mall.store.mapper.StoreMapper">
+
+    <resultMap type="Store" id="StoreResult">
+        <result property="smsQuantity" column="sms_quantity"/>
+        <result property="registerType" column="register_type"/>
+        <result property="expireTime" column="expire_time"/>
+        <result property="tryTime" column="try_time"/>
+        <result property="contactMobile" column="contact_mobile"/>
+        <result property="addressProvince" column="address_province"/>
+        <result property="buyPlanTimes" column="buy_plan_times"/>
+        <result property="createTime" column="create_time"/>
+        <result property="isChecked" column="is_checked"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="servicePhone" column="service_phone"/>
+        <result property="addressLat" column="address_lat"/>
+        <result property="contactName" column="contact_name"/>
+        <result property="deleteTime" column="delete_time"/>
+        <result property="diyProfile" column="diy_profile"/>
+        <result property="industryTwo" column="industry_two"/>
+        <result property="isStar" column="is_star"/>
+        <result property="isTry" column="is_try"/>
+        <result property="logo" column="logo"/>
+        <result property="addressDetail" column="address_detail"/>
+        <result property="planId" column="plan_id"/>
+        <result property="supportName" column="support_name"/>
+        <result property="name" column="name"/>
+        <result property="status" column="status"/>
+        <result property="uid" column="uid"/>
+        <result property="type" column="type"/>
+        <result property="contactQq" column="contact_qq"/>
+        <result property="addressLng" column="address_lng"/>
+        <result property="lastLoginTime" column="last_login_time"/>
+        <result property="supportPhone" column="support_phone"/>
+        <result property="addressArea" column="address_area"/>
+        <result property="contactQrcode" column="contact_qrcode"/>
+        <result property="description" column="description"/>
+        <result property="industryOne" column="industry_one"/>
+        <result property="addressCity" column="address_city"/>
+        <result property="id" column="id"/>
+        <result property="collect" column="collect"/>
+        <result property="hit" column="hit"/>
+        <result property="goodsCount"    column="goods_count"    />
+        <result property="memberCount"    column="member_count"    />
+        <result property="orderCount"    column="order_count"    />
+        <result property="payAmount"    column="pay_amount"    />
+        <result property="articleCount"    column="article_count"    />
+    </resultMap>
+
+    <sql id="selectStoreVo">
+       select sms_quantity, register_type, expire_time, try_time, contact_mobile, address_province, buy_plan_times, create_time, is_checked, is_deleted, service_phone, address_lat, contact_name, delete_time, diy_profile, industry_two, is_star, is_try, logo, address_detail, plan_id, support_name, name, status, uid, type, contact_qq, address_lng, last_login_time, support_phone, address_area, contact_qrcode, description, industry_one, address_city, id, collect, hit, goods_count, member_count, order_count, pay_amount, article_count from sys_store
+    </sql>
+
+    <select id="selectStoreList" parameterType="Store" resultMap="StoreResult">
+        <include refid="selectStoreVo"/>
+        <where>
+            <if test="smsQuantity != null ">and sms_quantity = #{smsQuantity}</if>
+            <if test="registerType != null ">and register_type = #{registerType}</if>
+            <if test="expireTime != null ">and expire_time = #{expireTime}</if>
+            <if test="tryTime != null ">and try_time = #{tryTime}</if>
+            <if test="contactMobile != null  and contactMobile != ''">and contact_mobile = #{contactMobile}</if>
+            <if test="addressProvince != null ">and address_province = #{addressProvince}</if>
+            <if test="buyPlanTimes != null ">and buy_plan_times = #{buyPlanTimes}</if>
+            <if test="isChecked != null ">and is_checked = #{isChecked}</if>
+            <if test="isDeleted != null ">and is_deleted = #{isDeleted}</if>
+            <if test="servicePhone != null  and servicePhone != ''">and service_phone = #{servicePhone}</if>
+            <if test="addressLat != null  and addressLat != ''">and address_lat = #{addressLat}</if>
+            <if test="contactName != null  and contactName != ''">and contact_name like concat('%', #{contactName},
+                '%')
+            </if>
+            <if test="deleteTime != null ">and delete_time = #{deleteTime}</if>
+            <if test="diyProfile != null  and diyProfile != ''">and diy_profile = #{diyProfile}</if>
+            <if test="industryTwo != null ">and industry_two = #{industryTwo}</if>
+            <if test="isStar != null ">and is_star = #{isStar}</if>
+            <if test="isTry != null ">and is_try = #{isTry}</if>
+            <if test="logo != null  and logo != ''">and logo = #{logo}</if>
+            <if test="addressDetail != null  and addressDetail != ''">and address_detail = #{addressDetail}</if>
+            <if test="planId != null ">and plan_id = #{planId}</if>
+            <if test="supportName != null  and supportName != ''">and support_name like concat('%', #{supportName},
+                '%')
+            </if>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="status != null ">and status = #{status}</if>
+            <if test="uid != null ">and uid = #{uid}</if>
+            <if test="type != null ">and type = #{type}</if>
+            <if test="contactQq != null  and contactQq != ''">and contact_qq = #{contactQq}</if>
+            <if test="addressLng != null  and addressLng != ''">and address_lng = #{addressLng}</if>
+            <if test="lastLoginTime != null ">and last_login_time = #{lastLoginTime}</if>
+            <if test="supportPhone != null  and supportPhone != ''">and support_phone = #{supportPhone}</if>
+            <if test="addressArea != null ">and address_area = #{addressArea}</if>
+            <if test="contactQrcode != null  and contactQrcode != ''">and contact_qrcode = #{contactQrcode}</if>
+            <if test="description != null  and description != ''">and description = #{description}</if>
+            <if test="industryOne != null ">and industry_one = #{industryOne}</if>
+            <if test="addressCity != null ">and address_city = #{addressCity}</if>
+            <if test="collect != null ">and collect = #{collect}</if>
+            <if test="hit != null ">and hit = #{hit}</if>
+            <if test="params != null and params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params != null and params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectStoreById" parameterType="Long" resultMap="StoreResult">
+        <include refid="selectStoreVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertStore" parameterType="Store" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_store
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="smsQuantity != null ">sms_quantity,</if>
+            <if test="registerType != null ">register_type,</if>
+            <if test="expireTime != null ">expire_time,</if>
+            <if test="tryTime != null ">try_time,</if>
+            <if test="contactMobile != null  and contactMobile != ''">contact_mobile,</if>
+            <if test="addressProvince != null ">address_province,</if>
+            <if test="buyPlanTimes != null ">buy_plan_times,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="isChecked != null ">is_checked,</if>
+            <if test="isDeleted != null ">is_deleted,</if>
+            <if test="servicePhone != null  and servicePhone != ''">service_phone,</if>
+            <if test="addressLat != null  and addressLat != ''">address_lat,</if>
+            <if test="contactName != null  and contactName != ''">contact_name,</if>
+            <if test="deleteTime != null ">delete_time,</if>
+            <if test="diyProfile != null  and diyProfile != ''">diy_profile,</if>
+            <if test="industryTwo != null ">industry_two,</if>
+            <if test="isStar != null ">is_star,</if>
+            <if test="isTry != null ">is_try,</if>
+            <if test="logo != null  and logo != ''">logo,</if>
+            <if test="addressDetail != null  and addressDetail != ''">address_detail,</if>
+            <if test="planId != null ">plan_id,</if>
+            <if test="supportName != null  and supportName != ''">support_name,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="status != null ">status,</if>
+            <if test="uid != null ">uid,</if>
+            <if test="type != null ">type,</if>
+            <if test="contactQq != null  and contactQq != ''">contact_qq,</if>
+            <if test="addressLng != null  and addressLng != ''">address_lng,</if>
+            <if test="lastLoginTime != null ">last_login_time,</if>
+            <if test="supportPhone != null  and supportPhone != ''">support_phone,</if>
+            <if test="addressArea != null ">address_area,</if>
+            <if test="contactQrcode != null  and contactQrcode != ''">contact_qrcode,</if>
+            <if test="description != null  and description != ''">description,</if>
+            <if test="industryOne != null ">industry_one,</if>
+            <if test="addressCity != null ">address_city,</if>
+            <if test="collect != null ">collect,</if>
+            <if test="hit != null ">hit,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="smsQuantity != null ">#{smsQuantity},</if>
+            <if test="registerType != null ">#{registerType},</if>
+            <if test="expireTime != null ">#{expireTime},</if>
+            <if test="tryTime != null ">#{tryTime},</if>
+            <if test="contactMobile != null  and contactMobile != ''">#{contactMobile},</if>
+            <if test="addressProvince != null ">#{addressProvince},</if>
+            <if test="buyPlanTimes != null ">#{buyPlanTimes},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="isChecked != null ">#{isChecked},</if>
+            <if test="isDeleted != null ">#{isDeleted},</if>
+            <if test="servicePhone != null  and servicePhone != ''">#{servicePhone},</if>
+            <if test="addressLat != null  and addressLat != ''">#{addressLat},</if>
+            <if test="contactName != null  and contactName != ''">#{contactName},</if>
+            <if test="deleteTime != null ">#{deleteTime},</if>
+            <if test="diyProfile != null  and diyProfile != ''">#{diyProfile},</if>
+            <if test="industryTwo != null ">#{industryTwo},</if>
+            <if test="isStar != null ">#{isStar},</if>
+            <if test="isTry != null ">#{isTry},</if>
+            <if test="logo != null  and logo != ''">#{logo},</if>
+            <if test="addressDetail != null  and addressDetail != ''">#{addressDetail},</if>
+            <if test="planId != null ">#{planId},</if>
+            <if test="supportName != null  and supportName != ''">#{supportName},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="status != null ">#{status},</if>
+            <if test="uid != null ">#{uid},</if>
+            <if test="type != null ">#{type},</if>
+            <if test="contactQq != null  and contactQq != ''">#{contactQq},</if>
+            <if test="addressLng != null  and addressLng != ''">#{addressLng},</if>
+            <if test="lastLoginTime != null ">#{lastLoginTime},</if>
+            <if test="supportPhone != null  and supportPhone != ''">#{supportPhone},</if>
+            <if test="addressArea != null ">#{addressArea},</if>
+            <if test="contactQrcode != null  and contactQrcode != ''">#{contactQrcode},</if>
+            <if test="description != null  and description != ''">#{description},</if>
+            <if test="industryOne != null ">#{industryOne},</if>
+            <if test="addressCity != null ">#{addressCity},</if>
+            <if test="collect != null ">#{collect},</if>
+            <if test="hit != null ">#{hit},</if>
+        </trim>
+    </insert>
+
+    <update id="updateStore" parameterType="Store">
+        update sys_store
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="smsQuantity != null ">sms_quantity = #{smsQuantity},</if>
+            <if test="registerType != null ">register_type = #{registerType},</if>
+            <if test="expireTime != null ">expire_time = #{expireTime},</if>
+            <if test="tryTime != null ">try_time = #{tryTime},</if>
+            <if test="contactMobile != null  and contactMobile != ''">contact_mobile = #{contactMobile},</if>
+            <if test="addressProvince != null ">address_province = #{addressProvince},</if>
+            <if test="buyPlanTimes != null ">buy_plan_times = #{buyPlanTimes},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="isChecked != null ">is_checked = #{isChecked},</if>
+            <if test="isDeleted != null ">is_deleted = #{isDeleted},</if>
+            <if test="servicePhone != null  and servicePhone != ''">service_phone = #{servicePhone},</if>
+            <if test="addressLat != null  and addressLat != ''">address_lat = #{addressLat},</if>
+            <if test="contactName != null  and contactName != ''">contact_name = #{contactName},</if>
+            <if test="deleteTime != null ">delete_time = #{deleteTime},</if>
+            <if test="diyProfile != null  and diyProfile != ''">diy_profile = #{diyProfile},</if>
+            <if test="industryTwo != null ">industry_two = #{industryTwo},</if>
+            <if test="isStar != null ">is_star = #{isStar},</if>
+            <if test="isTry != null ">is_try = #{isTry},</if>
+            <if test="logo != null  and logo != ''">logo = #{logo},</if>
+            <if test="addressDetail != null  and addressDetail != ''">address_detail = #{addressDetail},</if>
+            <if test="planId != null ">plan_id = #{planId},</if>
+            <if test="supportName != null  and supportName != ''">support_name = #{supportName},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="status != null ">status = #{status},</if>
+            <if test="uid != null ">uid = #{uid},</if>
+            <if test="type != null ">type = #{type},</if>
+            <if test="contactQq != null  and contactQq != ''">contact_qq = #{contactQq},</if>
+            <if test="addressLng != null  and addressLng != ''">address_lng = #{addressLng},</if>
+            <if test="lastLoginTime != null ">last_login_time = #{lastLoginTime},</if>
+            <if test="supportPhone != null  and supportPhone != ''">support_phone = #{supportPhone},</if>
+            <if test="addressArea != null ">address_area = #{addressArea},</if>
+            <if test="contactQrcode != null  and contactQrcode != ''">contact_qrcode = #{contactQrcode},</if>
+            <if test="description != null  and description != ''">description = #{description},</if>
+            <if test="industryOne != null ">industry_one = #{industryOne},</if>
+            <if test="addressCity != null ">address_city = #{addressCity},</if>
+            <if test="collect != null ">collect = #{collect},</if>
+            <if test="hit != null ">hit = #{hit},</if>
+            <if test="goodsCount != null ">goods_count = #{goodsCount},</if>
+            <if test="memberCount != null ">member_count = #{memberCount},</if>
+            <if test="orderCount != null ">order_count = #{orderCount},</if>
+            <if test="payAmount != null ">pay_amount = #{payAmount},</if>
+            <if test="articleCount != null ">article_count = #{articleCount},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStoreById" parameterType="Long">
+        delete from sys_store where id = #{id}
+    </delete>
+
+    <delete id="deleteStoreByIds" parameterType="String">
+        delete from sys_store where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

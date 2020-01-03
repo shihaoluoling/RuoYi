@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<th:block th:include="include :: header('表单构建器')" />
+	<th:block th:include="include :: datetimepicker-css" />
+</head>
+<style>
+    .droppable-active{background-color:#ffe!important}.tools a{cursor:pointer;font-size:80%}.form-body .col-md-6,.form-body .col-md-12{min-height:400px}.draggable{cursor:move}
+</style>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>元素</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">基本</a>
+                                </li>
+                                <li><a href="#">其他</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="alert alert-info">
+                           	 拖拽左侧的表单元素到右侧区域，即可生成相应的HTML代码，表单代码，轻松搞定！
+                        </div>
+                        <form role="form" class="form-horizontal m-t">
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">appId：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="appid" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">appSecret：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="appsecret" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">mchId：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="mchid" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">paySignKey：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="paySignKey" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">certName：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="certname" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">notifyUrl：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="notifyurl" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">下单成功模版Id：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="templateid1" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">支付成功模版Id：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="templateid2" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">发货成功模版Id：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="templateid3" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+                            <div class="form-group draggable">
+                                <label class="col-sm-3 control-label">收货成功模版Id：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="templateid4" class="form-control" placeholder="请输入文本">
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+   <th:block th:include="include :: footer" />
+   <script th:src="@{/js/jquery-ui-1.10.4.min.js}"></script>
+   <th:block th:include="include :: datetimepicker-js" />
+   <script th:src="@{/ajax/libs/beautifyhtml/beautifyhtml.js}"></script>
+   <script type="text/javascript">
+       var prefix = ctx + "system/set"
+       $("#form-set-add").validate({
+           focusCleanup: true
+       });
+
+       function submitHandler() {
+           if ($.validate.form()) {
+               $.operate.save(prefix + "/add", $('#form-set-add').serialize());
+           }
+       }
+
+       $(document).ready(function(){setup_draggable();$("#n-columns").on("change",function(){var v=$(this).val();if(v==="1"){var $col=$(".form-body .col-md-12").toggle(true);$(".form-body .col-md-6 .draggable").each(function(i,el){$(this).remove().appendTo($col)});$(".form-body .col-md-6").toggle(false)}else{var $col=$(".form-body .col-md-6").toggle(true);$(".form-body .col-md-12 .draggable").each(function(i,el){$(this).remove().appendTo(i%2?$col[1]:$col[0])});$(".form-body .col-md-12").toggle(false)}});$("#copy-to-clipboard").on("click",function(){var $copy=$(".form-body").clone().appendTo(document.body);$copy.find(".tools, :hidden").remove();$.each(["draggable","droppable","sortable","dropped","ui-sortable","ui-draggable","ui-droppable","form-body"],function(i,c){$copy.find("."+c).removeClass(c).removeAttr("style")});var html=html_beautify($copy.html());$copy.remove();$modal=get_modal(html).modal("show");$modal.find(".btn").remove();$modal.find(".modal-title").html("复制HTML代码");$modal.find(":input:first").select().focus();return false})});var setup_draggable=function(){$(".draggable").draggable({appendTo:"body",helper:"clone"});$(".droppable").droppable({accept:".draggable",helper:"clone",hoverClass:"droppable-active",drop:function(event,ui){$(".empty-form").remove();var $orig=$(ui.draggable);if(!$(ui.draggable).hasClass("dropped")){var $el=$orig.clone().addClass("dropped").css({"position":"static","left":null,"right":null}).appendTo(this);var id=$orig.find(":input").attr("id");if(id){id=id.split("-").slice(0,-1).join("-")+"-"+(parseInt(id.split("-").slice(-1)[0])+1);$orig.find(":input").attr("id",id);$orig.find("label").attr("for",id)}$('<p class="tools col-sm-12 col-sm-offset-3">						<a class="edit-link">编辑HTML<a> | 						<a class="remove-link">移除</a></p>').appendTo($el)}else{if($(this)[0]!=$orig.parent()[0]){var $el=$orig.clone().css({"position":"static","left":null,"right":null}).appendTo(this);$orig.remove()}}}}).sortable()};var get_modal=function(content){var modal=$('<div class="modal" style="overflow: auto;" tabindex="-1">	<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><a type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</a><h4 class="modal-title">编辑HTML</h4></div><div class="modal-body ui-front">	<textarea class="form-control textarea-show-src"  style="min-height: 200px; margin-bottom: 10px;font-family: Monaco, Fixed"></textarea><button class="btn btn-success">更新HTML</button></div></div></div></div>').appendTo(document.body);var doms = document.getElementsByClassName("textarea-show-src");for (var i = 0; i < doms.length; i++) {doms.item(i).innerHTML = content;}return modal};$(document).on("click",".edit-link",function(ev){var $el=$(this).parent().parent();var $el_copy=$el.clone();var $edit_btn=$el_copy.find(".edit-link").parent().remove();var $modal=get_modal(html_beautify($el_copy.html())).modal("show");$modal.find(":input:first").focus();$modal.find(".btn-success").click(function(ev2){var html=$modal.find("textarea").val();if(!html){$el.remove()}else{$el.html(html);$edit_btn.appendTo($el)}$modal.modal("hide");return false})});$(document).on("click",".remove-link",function(ev){$(this).parent().parent().remove()});
+       $(".input-group.date").datetimepicker({
+    	   format: "yyyy-mm-dd",
+    	   minView: "month",
+    	   autoclose: true
+    	 });
+       </script>
+</body>
+</html>

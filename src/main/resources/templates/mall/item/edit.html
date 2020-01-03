@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('修改订单中所包含的商品')"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-item-edit" th:object="${omsOrderItem}">
+        <input name="id" th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单id：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="orderId" th:field="*{orderId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="orderSn" th:field="*{orderSn}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productId" th:field="*{productId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="productPic">[[*{productPic}]]</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productName" th:field="*{productName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productBrand" th:field="*{productBrand}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">订单编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productSn" th:field="*{productSn}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">销售价格：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productPrice" th:field="*{productPrice}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">购买数量：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productQuantity" th:field="*{productQuantity}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品sku编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productSkuId" th:field="*{productSkuId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品sku条码：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productSkuCode" th:field="*{productSkuCode}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品分类id：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productCategoryId" th:field="*{productCategoryId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品的销售属性：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sp1" th:field="*{sp1}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品的销售属性：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sp2" th:field="*{sp2}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品的销售属性：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sp3" th:field="*{sp3}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品促销名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionName" th:field="*{promotionName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品促销分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionAmount" th:field="*{promotionAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">优惠券优惠分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="couponAmount" th:field="*{couponAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">积分优惠分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="integrationAmount" th:field="*{integrationAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">该商品经过优惠后的分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="realAmount" th:field="*{realAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">该商品经过优惠后的分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="giftIntegration" th:field="*{giftIntegration}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">该商品经过优惠后的分解金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="giftGrowth" th:field="*{giftGrowth}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品销售属性:[{"key":"颜色","value":"颜色"},{"key":"容量","value":"4G"}]：</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="productAttr">[[*{productAttr}]]</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeId" th:field="*{storeId}" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/item";
+    $("#form-item-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-item-edit').serialize());
+        }
+    }
+</script>
+</body>
+</html>

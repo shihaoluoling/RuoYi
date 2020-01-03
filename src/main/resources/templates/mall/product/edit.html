@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('修改商品信息')"/>
+    <th:block th:include="include :: datetimepicker-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-product-edit" th:object="${pmsProduct}">
+        <input name="id" th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="brandId" th:field="*{brandId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productCategoryId" th:field="*{productCategoryId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="feightTemplateId" th:field="*{feightTemplateId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productAttributeCategoryId" th:field="*{productAttributeCategoryId}"
+                       type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="name" required th:field="*{name}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="pic" th:field="*{pic}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">货号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productSn" required th:field="*{productSn}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">删除状态：0->未删除；1->已删除：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="deleteStatus" type="radio" value="">
+                    <label th:for="deleteStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上架状态：0->下架；1->上架：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="publishStatus" type="radio" value="">
+                    <label th:for="publishStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">新品状态:0->不是新品；1->新品：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="newStatus" type="radio" value="">
+                    <label th:for="newStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">推荐状态；0->不推荐；1->推荐：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="recommandStatus" type="radio" value="">
+                    <label th:for="recommandStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">审核状态：0->未审核；1->审核通过：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="verifyStatus" type="radio" value="">
+                    <label th:for="verifyStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">排序：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sort" th:field="*{sort}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">销量：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="sale" th:field="*{sale}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">销量：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="price" th:field="*{price}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">促销价格：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionPrice" th:field="*{promotionPrice}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">赠送的成长值：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="giftGrowth" th:field="*{giftGrowth}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">赠送的积分：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="giftPoint" th:field="*{giftPoint}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">限制使用的积分数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="usePointLimit" th:field="*{usePointLimit}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">副标题：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="subTitle" th:field="*{subTitle}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品描述：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="description" th:field="*{description}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">市场价：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="originalPrice" th:field="*{originalPrice}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">库存：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="stock" th:field="*{stock}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">库存预警值：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="lowStock" th:field="*{lowStock}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="unit" th:field="*{unit}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品重量，默认为克：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="weight" th:field="*{weight}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否为预告商品：0->不是；1->是：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="previewStatus" type="radio" value="">
+                    <label th:for="previewStatus" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="serviceIds" th:field="*{serviceIds}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="keywords" th:field="*{keywords}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="note" th:field="*{note}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">画册图片，连产品图片限制为5张，以逗号分割：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="albumPics" th:field="*{albumPics}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">画册图片，连产品图片限制为5张，以逗号分割：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="detailTitle" th:field="*{detailTitle}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">画册图片，连产品图片限制为5张，以逗号分割：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="detailDesc" th:field="*{detailDesc}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">产品详情网页内容：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="detailHtml" th:field="*{detailHtml}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">移动端网页详情：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="detailMobileHtml" th:field="*{detailMobileHtml}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">促销开始时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control"
+                           name="promotionStartTime" placeholder="yyyy-MM-dd"
+                           th:value="${#dates.format(pmsProduct.promotionStartTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">促销结束时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control"
+                           name="promotionEndTime" placeholder="yyyy-MM-dd"
+                           th:value="${#dates.format(pmsProduct.promotionEndTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">活动限购数量：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="promotionPerLimit" th:field="*{promotionPerLimit}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="promotionType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">品牌名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="brandName" th:field="*{brandName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品分类名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="productCategoryName" th:field="*{productCategoryName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品分类名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="supplyId" th:field="*{supplyId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品分类名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="schoolId" th:field="*{schoolId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeId" th:field="*{storeId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="memberId" th:field="*{memberId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="hit" th:field="*{hit}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="type">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="areaId" th:field="*{areaId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="areaName" th:field="*{areaName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所属店铺：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="schoolName" th:field="*{schoolName}" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: datetimepicker-js"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/product";
+    $("#form-product-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-product-edit').serialize());
+        }
+    }
+
+    $("input[name='promotionStartTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='promotionEndTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+</script>
+</body>
+</html>

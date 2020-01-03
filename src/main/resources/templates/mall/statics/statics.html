@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('【请填写功能名称】列表')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <p>添加商品：</p>
+                            <input name="goodsCount" type="text"/>
+                        </li>
+                        <li>
+                            <p>支付订单数：</p>
+                            <input name="payOrderCount" type="text"/>
+                        </li>
+                        <li>
+                            <p>文章数：</p>
+                            <input name="articleCount" type="text"/>
+                        </li>
+                        <li>
+                            <p>支付金额：</p>
+                            <input name="payAmount" type="text"/>
+                        </li>
+                        <li>
+                            <p>添加会员数：</p>
+                            <input name="memberCount" type="text"/>
+                        </li>
+                        <li>
+                            <p>商户编号：</p>
+                            <input name="storeId" type="text"/>
+                        </li>
+                        <li>
+                            <p>商户名称：</p>
+                            <input name="storeName" type="text"/>
+                        </li>
+                        <li class="select-time">
+                            <label>创建时间： </label>
+                            <input class="time-input" id="startTime" name="params[beginTime]" placeholder="开始时间"
+                                   type="text"/>
+                            <span>-</span>
+                            <input class="time-input" id="endTime" name="params[endTime]" placeholder="结束时间"
+                                   type="text"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="mall:statics:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table data-mobile-responsive="true" id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('mall:statics:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('mall:statics:remove')}]];
+    var prefix = ctx + "mall/statics";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "商户日统计",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '编号',
+                    visible: false
+                },
+                {
+                    field: 'storeName',
+                    title: '商户'
+                },
+                {
+                    field: 'goodsCount',
+                    title: '添加商品数'
+                },
+                {
+                    field: 'payOrderCount',
+                    title: '支付订单数'
+                },
+                {
+                    field: 'payAmount',
+                    title: '支付金额'
+                },
+                {
+                    field: 'articleCount',
+                    title: '文章数'
+                },
+
+                {
+                    field: 'memberCount',
+                    title: '添加会员数'
+                },
+
+                {
+                    field: 'notPayOrderCount',
+                    title: '没有支付订单数'
+                },
+                {
+                    field: 'notPayAmount',
+                    title: '没有支付订单金额'
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间'
+                }
+            ]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

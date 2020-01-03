@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.mall.subject.mapper.CmsSubjectMapper">
+
+    <resultMap type="CmsSubject" id="CmsSubjectResult">
+        <result property="id" column="id"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="title" column="title"/>
+        <result property="pic" column="pic"/>
+        <result property="productCount" column="product_count"/>
+        <result property="recommendStatus" column="recommend_status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="collectCount" column="collect_count"/>
+        <result property="readCount" column="read_count"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="albumPics" column="album_pics"/>
+        <result property="description" column="description"/>
+        <result property="showStatus" column="show_status"/>
+        <result property="content" column="content"/>
+        <result property="forwardCount" column="forward_count"/>
+        <result property="categoryName" column="category_name"/>
+        <result property="areaId" column="area_id"/>
+        <result property="schoolId" column="school_id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="reward" column="reward"/>
+        <result property="storeId" column="store_id"/>
+        <result property="areaName" column="area_name"/>
+        <result property="schoolName" column="school_name"/>
+        <result property="memberName" column="member_name"/>
+        <result property="videoSrc" column="video_src"/>
+        <result property="type" column="type"/>
+    </resultMap>
+
+    <sql id="selectCmsSubjectVo">
+        select id, category_id, title, pic, product_count, recommend_status, create_time, collect_count, read_count, comment_count, album_pics, description, show_status, content, forward_count, category_name, area_id, school_id, member_id, reward, store_id, area_name, school_name, member_name, video_src, type from cms_subject
+    </sql>
+
+    <select id="selectCmsSubjectList" parameterType="CmsSubject" resultMap="CmsSubjectResult">
+        <include refid="selectCmsSubjectVo"/>
+        <where>
+            <if test="categoryId != null ">and category_id = #{categoryId}</if>
+            <if test="title != null  and title != ''">and title = #{title}</if>
+            <if test="pic != null  and pic != ''">and pic = #{pic}</if>
+            <if test="productCount != null ">and product_count = #{productCount}</if>
+            <if test="recommendStatus != null ">and recommend_status = #{recommendStatus}</if>
+            <if test="collectCount != null ">and collect_count = #{collectCount}</if>
+            <if test="readCount != null ">and read_count = #{readCount}</if>
+            <if test="commentCount != null ">and comment_count = #{commentCount}</if>
+            <if test="albumPics != null  and albumPics != ''">and album_pics = #{albumPics}</if>
+            <if test="description != null  and description != ''">and description = #{description}</if>
+            <if test="showStatus != null ">and show_status = #{showStatus}</if>
+            <if test="content != null  and content != ''">and content = #{content}</if>
+            <if test="forwardCount != null ">and forward_count = #{forwardCount}</if>
+            <if test="categoryName != null  and categoryName != ''">and category_name like concat('%', #{categoryName},
+                '%')
+            </if>
+            <if test="areaId != null ">and area_id = #{areaId}</if>
+            <if test="schoolId != null ">and school_id = #{schoolId}</if>
+            <if test="memberId != null ">and member_id = #{memberId}</if>
+            <if test="reward != null ">and reward = #{reward}</if>
+            <if test="storeId != null ">and store_id = #{storeId}</if>
+            <if test="areaName != null  and areaName != ''">and area_name like concat('%', #{areaName}, '%')</if>
+            <if test="schoolName != null  and schoolName != ''">and school_name like concat('%', #{schoolName}, '%')
+            </if>
+            <if test="memberName != null  and memberName != ''">and member_name like concat('%', #{memberName}, '%')
+            </if>
+            <if test="videoSrc != null  and videoSrc != ''">and video_src = #{videoSrc}</if>
+            <if test="type != null ">and type = #{type}</if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectCmsSubjectById" parameterType="Long" resultMap="CmsSubjectResult">
+        <include refid="selectCmsSubjectVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertCmsSubject" parameterType="CmsSubject" useGeneratedKeys="true" keyProperty="id">
+        insert into cms_subject
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null ">category_id,</if>
+            <if test="title != null  and title != ''">title,</if>
+            <if test="pic != null  and pic != ''">pic,</if>
+            <if test="productCount != null ">product_count,</if>
+            <if test="recommendStatus != null ">recommend_status,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="collectCount != null ">collect_count,</if>
+            <if test="readCount != null ">read_count,</if>
+            <if test="commentCount != null ">comment_count,</if>
+            <if test="albumPics != null  and albumPics != ''">album_pics,</if>
+            <if test="description != null  and description != ''">description,</if>
+            <if test="showStatus != null ">show_status,</if>
+            <if test="content != null  and content != ''">content,</if>
+            <if test="forwardCount != null ">forward_count,</if>
+            <if test="categoryName != null  and categoryName != ''">category_name,</if>
+            <if test="areaId != null ">area_id,</if>
+            <if test="schoolId != null ">school_id,</if>
+            <if test="memberId != null ">member_id,</if>
+            <if test="reward != null ">reward,</if>
+            <if test="storeId != null ">store_id,</if>
+            <if test="areaName != null  and areaName != ''">area_name,</if>
+            <if test="schoolName != null  and schoolName != ''">school_name,</if>
+            <if test="memberName != null  and memberName != ''">member_name,</if>
+            <if test="videoSrc != null  and videoSrc != ''">video_src,</if>
+            <if test="type != null ">type,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null ">#{categoryId},</if>
+            <if test="title != null  and title != ''">#{title},</if>
+            <if test="pic != null  and pic != ''">#{pic},</if>
+            <if test="productCount != null ">#{productCount},</if>
+            <if test="recommendStatus != null ">#{recommendStatus},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="collectCount != null ">#{collectCount},</if>
+            <if test="readCount != null ">#{readCount},</if>
+            <if test="commentCount != null ">#{commentCount},</if>
+            <if test="albumPics != null  and albumPics != ''">#{albumPics},</if>
+            <if test="description != null  and description != ''">#{description},</if>
+            <if test="showStatus != null ">#{showStatus},</if>
+            <if test="content != null  and content != ''">#{content},</if>
+            <if test="forwardCount != null ">#{forwardCount},</if>
+            <if test="categoryName != null  and categoryName != ''">#{categoryName},</if>
+            <if test="areaId != null ">#{areaId},</if>
+            <if test="schoolId != null ">#{schoolId},</if>
+            <if test="memberId != null ">#{memberId},</if>
+            <if test="reward != null ">#{reward},</if>
+            <if test="storeId != null ">#{storeId},</if>
+            <if test="areaName != null  and areaName != ''">#{areaName},</if>
+            <if test="schoolName != null  and schoolName != ''">#{schoolName},</if>
+            <if test="memberName != null  and memberName != ''">#{memberName},</if>
+            <if test="videoSrc != null  and videoSrc != ''">#{videoSrc},</if>
+            <if test="type != null ">#{type},</if>
+        </trim>
+    </insert>
+
+    <update id="updateCmsSubject" parameterType="CmsSubject">
+        update cms_subject
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="categoryId != null ">category_id = #{categoryId},</if>
+            <if test="title != null  and title != ''">title = #{title},</if>
+            <if test="pic != null  and pic != ''">pic = #{pic},</if>
+            <if test="productCount != null ">product_count = #{productCount},</if>
+            <if test="recommendStatus != null ">recommend_status = #{recommendStatus},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="collectCount != null ">collect_count = #{collectCount},</if>
+            <if test="readCount != null ">read_count = #{readCount},</if>
+            <if test="commentCount != null ">comment_count = #{commentCount},</if>
+            <if test="albumPics != null  and albumPics != ''">album_pics = #{albumPics},</if>
+            <if test="description != null  and description != ''">description = #{description},</if>
+            <if test="showStatus != null ">show_status = #{showStatus},</if>
+            <if test="content != null  and content != ''">content = #{content},</if>
+            <if test="forwardCount != null ">forward_count = #{forwardCount},</if>
+            <if test="categoryName != null  and categoryName != ''">category_name = #{categoryName},</if>
+            <if test="areaId != null ">area_id = #{areaId},</if>
+            <if test="schoolId != null ">school_id = #{schoolId},</if>
+            <if test="memberId != null ">member_id = #{memberId},</if>
+            <if test="reward != null ">reward = #{reward},</if>
+            <if test="storeId != null ">store_id = #{storeId},</if>
+            <if test="areaName != null  and areaName != ''">area_name = #{areaName},</if>
+            <if test="schoolName != null  and schoolName != ''">school_name = #{schoolName},</if>
+            <if test="memberName != null  and memberName != ''">member_name = #{memberName},</if>
+            <if test="videoSrc != null  and videoSrc != ''">video_src = #{videoSrc},</if>
+            <if test="type != null ">type = #{type},</if>
+
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCmsSubjectById" parameterType="Long">
+        delete from cms_subject where id = #{id}
+    </delete>
+
+    <delete id="deleteCmsSubjectByIds" parameterType="String">
+        delete from cms_subject where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.mall.payments.mapper.OmsPaymentsMapper">
+    
+    <resultMap type="OmsPayments" id="OmsPaymentsResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="isOnline"    column="is_online"    />
+        <result property="params"    column="params"    />
+        <result property="sort"    column="sort"    />
+        <result property="memo"    column="memo"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectOmsPaymentsVo">
+        select id, code, name, is_online, params, sort, memo, status from oms_payments
+    </sql>
+
+    <select id="selectOmsPaymentsList" parameterType="OmsPayments" resultMap="OmsPaymentsResult">
+        <include refid="selectOmsPaymentsVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="isOnline != null "> and is_online = #{isOnline}</if>
+            <if test="params != null  and params != ''"> and params = #{params}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+            <if test="memo != null  and memo != ''"> and memo = #{memo}</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectOmsPaymentsById" parameterType="Integer" resultMap="OmsPaymentsResult">
+        <include refid="selectOmsPaymentsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertOmsPayments" parameterType="OmsPayments" useGeneratedKeys="true" keyProperty="id">
+        insert into oms_payments
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null  and code != ''">code,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="isOnline != null ">is_online,</if>
+            <if test="params != null  and params != ''">params,</if>
+            <if test="sort != null ">sort,</if>
+            <if test="memo != null  and memo != ''">memo,</if>
+            <if test="status != null ">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null  and code != ''">#{code},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="isOnline != null ">#{isOnline},</if>
+            <if test="params != null  and params != ''">#{params},</if>
+            <if test="sort != null ">#{sort},</if>
+            <if test="memo != null  and memo != ''">#{memo},</if>
+            <if test="status != null ">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateOmsPayments" parameterType="OmsPayments">
+        update oms_payments
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null  and code != ''">code = #{code},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="isOnline != null ">is_online = #{isOnline},</if>
+            <if test="params != null  and params != ''">params = #{params},</if>
+            <if test="sort != null ">sort = #{sort},</if>
+            <if test="memo != null  and memo != ''">memo = #{memo},</if>
+            <if test="status != null ">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOmsPaymentsById" parameterType="Integer">
+        delete from oms_payments where id = #{id}
+    </delete>
+
+    <delete id="deleteOmsPaymentsByIds" parameterType="String">
+        delete from oms_payments where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('修改【请填写功能名称】')"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-statics-edit" th:object="${adminDayStatics}">
+        <input name="id" th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">添加商品：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="goodsCount" th:field="*{goodsCount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支付订单数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="payOrderCount" th:field="*{payOrderCount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">文章数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="articleCount" th:field="*{articleCount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支付金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="payAmount" th:field="*{payAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">添加会员数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="memberCount" th:field="*{memberCount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商户：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeId" th:field="*{storeId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">没有支付订单数：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="notPayOrderCount" th:field="*{notPayOrderCount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">没有支付订单金额：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="notPayAmount" th:field="*{notPayAmount}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商户：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="storeName" th:field="*{storeName}" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/statics";
+    $("#form-statics-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-statics-edit').serialize());
+        }
+    }
+</script>
+</body>
+</html>

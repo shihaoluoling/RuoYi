@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('修改店铺')"/>
+    <th:block th:include="include :: datetimepicker-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-store-edit" th:object="${store}">
+        <input name="id" th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">短信数量：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="smsQuantity" th:field="*{smsQuantity}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">注册类型：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="registerType">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">到期时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="expireTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(store.expireTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">尝试时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="tryTime" placeholder="yyyy-MM-dd"
+                           th:value="${#dates.format(store.tryTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">联系电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactMobile" th:field="*{contactMobile}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地区省：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressProvince" th:field="*{addressProvince}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">所购物品计划时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="buyPlanTimes" th:field="*{buyPlanTimes}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否选中：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isChecked" th:field="*{isChecked}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否删除：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isDeleted" th:field="*{isDeleted}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">服务电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="servicePhone" th:field="*{servicePhone}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址名：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressLat" th:field="*{addressLat}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">联系人名：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactName" th:field="*{contactName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">删除时间：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="deleteTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(store.deleteTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">自己配置文件：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="diyProfile" th:field="*{diyProfile}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">行业：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="industryTwo" th:field="*{industryTwo}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isStar" th:field="*{isStar}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">尝试：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="isTry" th:field="*{isTry}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">图标：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="logo" th:field="*{logo}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址细节：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressDetail" th:field="*{addressDetail}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">计划id：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="planId" th:field="*{planId}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支持，维持名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="supportName" th:field="*{supportName}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="name" th:field="*{name}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">1 通过 2 审核中 3 拒绝：</label>
+            <div class="col-sm-8">
+                <div class="radio-box">
+                    <input name="status" type="radio" value="">
+                    <label th:for="status" th:text="未知"></label>
+                </div>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="uid" th:field="*{uid}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">类型：</label>
+            <div class="col-sm-8">
+                <select class="form-control m-b" name="type">
+                    <option value="">所有</option>
+                </select>
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">联系QQ：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactQq" th:field="*{contactQq}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressLng" th:field="*{addressLng}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" name="lastLoginTime"
+                           placeholder="yyyy-MM-dd" th:value="${#dates.format(store.lastLoginTime, 'yyyy-MM-dd')}" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支持电话：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="supportPhone" th:field="*{supportPhone}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址区域：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressArea" th:field="*{addressArea}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="contactQrcode" th:field="*{contactQrcode}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">描述：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="description" th:field="*{description}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">行业1：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="industryOne" th:field="*{industryOne}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址城市：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="addressCity" th:field="*{addressCity}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="collect" th:field="*{collect}" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">null：</label>
+            <div class="col-sm-8">
+                <input class="form-control" name="hit" th:field="*{hit}" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: datetimepicker-js"/>
+<script type="text/javascript">
+    var prefix = ctx + "mall/store";
+    $("#form-store-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-store-edit').serialize());
+        }
+    }
+
+    $("input[name='expireTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='tryTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='deleteTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+
+    $("input[name='lastLoginTime']").datetimepicker({
+        format: "yyyy-mm-dd",
+        minView: "month",
+        autoclose: true
+    });
+</script>
+</body>
+</html>

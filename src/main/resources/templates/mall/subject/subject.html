@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('专题列表')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <p>分类：</p>
+                            <input name="categoryId" type="text"/>
+                        </li>
+                        <li>
+                            <p>标题：</p>
+                            <input name="title" type="text"/>
+                        </li>
+
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="mall:subject:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table data-mobile-responsive="true" id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('mall:subject:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('mall:subject:remove')}]];
+    var prefix = ctx + "mall/subject";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "专题",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '所属店铺',
+                    visible: false
+                },
+                {
+                    field: 'categoryId',
+                    title: '分类'
+                },
+                {
+                    field: 'title',
+                    title: '标题'
+                },
+                {
+                    field: 'pic',
+                    title: '专题主图'
+                    ,
+                    formatter: function (value, row, index) {
+                        return '<img src="' + row.pic + '" width="50px" height="50px"> ';
+                    }
+                },
+
+                {
+                    field: 'recommendStatus',
+                    title: '推荐'
+                },
+                {
+                    field: 'collectCount',
+                    title: '收藏量'
+                },
+                {
+                    field: 'readCount',
+                    title: '点击量'
+                },
+                {
+                    field: 'commentCount',
+                    title: '评论量'
+                },
+
+                {
+                    field: 'showStatus',
+                    title: '显示状态'
+                },
+
+                {
+                    field: 'forwardCount',
+                    title: '转发数'
+                },
+                {
+                    field: 'categoryName',
+                    title: '专题分类名称'
+                },
+
+                {
+                    field: 'reward',
+                    title: '打赏'
+                },
+                {
+                    field: 'storeId',
+                    title: '所属店铺'
+                },
+
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>
