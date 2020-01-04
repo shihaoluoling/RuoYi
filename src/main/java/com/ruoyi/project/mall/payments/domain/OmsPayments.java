@@ -34,6 +34,8 @@ public class OmsPayments extends BaseEntity
     @Excel(name = "是否线上支付 1=线上支付 2=线下支付")
     private Integer isOnline;
 
+    @Excel(name = "参数")
+    private String paramss;
 
 
     /** 排序 */
