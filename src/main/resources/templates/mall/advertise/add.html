@@ -3,33 +3,39 @@
 <head>
     <th:block th:include="include :: header('新增首页轮播广告')" />
     <th:block th:include="include :: datetimepicker-css" />
+    <th:block th:include="include :: bootstrap-fileinput-css" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-advertise-add">
             <div class="form-group">    
-                <label class="col-sm-3 control-label">排序：</label>
+                <label class="col-sm-3 control-label">轮播名称：</label>
                 <div class="col-sm-8">
                     <input name="name" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">轮播位置</label>
                 <div class="col-sm-8">
-                    <select name="type" class="form-control m-b">
+                    <select name="type" class="form-control m-b" th:with="type=${@dict.getType('advertise_location')}">
                         <option value="">所有</option>
+                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                     </select>
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">轮播图片</label>
+                <input name="pic" type="hidden">
                 <div class="col-sm-8">
-                    <textarea name="pic" class="form-control"></textarea>
+                    <div class="file-loading">
+                        <input name="upload" id="fileinput-demo-1" type="file" multiple>
+
+                    </div>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">广告开始时间</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -38,7 +44,7 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">广告结束时间</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -47,25 +53,12 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">上下线状态：0->下线；1->上线：</label>
+                <label class="col-sm-3 control-label">上下线状态</label>
                 <div class="col-sm-8">
-                    <div class="radio-box">
-                        <input type="radio" name="status" value="">
-                        <label th:for="status" th:text="未知"></label>
+                    <div class="radio-box" th:each="dict : ${@dict.getType('advertise_on_off')}">
+                        <input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}">
+                        <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
                     </div>
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
-                </div>
-            </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">点击数：</label>
-                <div class="col-sm-8">
-                    <input name="clickCount" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">下单数：</label>
-                <div class="col-sm-8">
-                    <input name="orderCount" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">
@@ -90,6 +83,7 @@
     </div>
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: datetimepicker-js" />
+    <th:block th:include="include :: bootstrap-fileinput-js" />
     <script type="text/javascript">
         var prefix = ctx + "mall/advertise"
         $("#form-advertise-add").validate({
@@ -113,6 +107,23 @@
             minView: "month",
             autoclose: true
         });
+        var imgUrls = "";
+        $("#fileinput-demo-1").fileinput({
+            'theme': 'explorer-fas',
+            'uploadUrl': ctx +'common/upload',
+            overwriteInitial: false,
+            initialPreviewAsData: true,
+            initialPreview: [//初始显示图片列表
+            ],
+            uploadExtraData:{//额外参数，将不同的文件存放不同的目录下
+                "baseDir":"advertise"
+            }
+        }).on("fileuploaded", function(event, data, previewId, index) {//上传成功回调
+            imgUrls += data.response.url+",";
+            $("input[name='pic']").val(imgUrls.substr(0,imgUrls.length-1));
+            console.log(imgUrls.substr(0,imgUrls.length-1));
+        });
+
     </script>
 </body>
 </html>

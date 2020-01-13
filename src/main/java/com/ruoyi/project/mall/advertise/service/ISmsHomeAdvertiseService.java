@@ -58,4 +58,6 @@ public interface ISmsHomeAdvertiseService
      * @return 结果
      */
     public int deleteSmsHomeAdvertiseById(Long id);
+
+    int changeStatus(SmsHomeAdvertise smsHomeAdvertise);
 }

@@ -63,6 +63,23 @@ public class SmsHomeAdvertise extends BaseEntity
     @Excel(name = "排序")
     private Long sort;
 
+
+
+    /**
+     * 所属店铺
+     * @param id
+     */
+    @Excel(name = "所属店铺")
+    private Long storeId;
+
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
     public void setId(Long id) 
     {
         this.id = id;
@@ -187,6 +204,7 @@ public class SmsHomeAdvertise extends BaseEntity
             .append("url", getUrl())
             .append("note", getNote())
             .append("sort", getSort())
+                .append("storeId", getSort())
             .toString();
     }
 }

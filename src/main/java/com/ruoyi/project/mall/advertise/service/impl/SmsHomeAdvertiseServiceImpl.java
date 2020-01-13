@@ -90,4 +90,9 @@ public class SmsHomeAdvertiseServiceImpl implements ISmsHomeAdvertiseService
     {
         return smsHomeAdvertiseMapper.deleteSmsHomeAdvertiseById(id);
     }
+
+    @Override
+    public int changeStatus(SmsHomeAdvertise smsHomeAdvertise) {
+        return smsHomeAdvertiseMapper.updateSmsHomeAdvertise(smsHomeAdvertise);
+    }
 }

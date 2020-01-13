@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.ruoyi.common.constant.Constants;
@@ -70,12 +71,13 @@ public class CommonController
      */
     @PostMapping("/common/upload")
     @ResponseBody
-    public AjaxResult uploadFile(MultipartFile file) throws Exception
+    public AjaxResult uploadFile(@RequestParam("upload") MultipartFile file,@RequestParam(value = "baseDir",defaultValue = "") String baseDir) throws Exception
     {
         try
         {
             // 上传文件路径
-            String filePath = RuoYiConfig.getUploadPath();
+//            String filePath = RuoYiConfig.getUploadPath()+baseDir;
+            String filePath ="src/main/resources/"+baseDir;
             // 上传并返回新文件名称
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfig.getUrl() + fileName;

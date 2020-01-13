@@ -2,6 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <th:block th:include="include :: header('首页轮播广告列表')" />
+
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -11,45 +12,28 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <p>排序：</p>
+                                <p>广告名称：</p>
                                 <input type="text" name="name"/>
                             </li>
                             <li>
-                                <p>轮播位置：0->PC首页轮播；1->app首页轮播：</p>
-                                <select name="type" th:with="type=${@dict.getType('')}">
+                                <p>轮播位置</p>
+                                <select name="type" th:with="type=${@dict.getType('advertise_location')}">
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                                 </select>
                             </li>
                             <li class="select-time">
-                                <p>轮播位置：0->PC首页轮播；1->app首页轮播：</p>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginStartTime]"/>
+                                <p>活动时间段</p>
+                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="startTime"/>
                                 <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endStartTime]"/>
-                            </li>
-                            <li class="select-time">
-                                <p>轮播位置：0->PC首页轮播；1->app首页轮播：</p>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginEndTime]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endEndTime]"/>
+                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="endTime"/>
                             </li>
                             <li>
-                                <p>上下线状态：0->下线；1->上线：</p>
-                                <select name="status">
+                                <p>上下线状态</p>
+                                <select name="status" th:with="type=${@dict.getType('advertise_on_off')}">
                                     <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                                 </select>
-                            </li>
-                            <li>
-                                <p>点击数：</p>
-                                <input type="text" name="clickCount"/>
-                            </li>
-                            <li>
-                                <p>下单数：</p>
-                                <input type="text" name="orderCount"/>
-                            </li>
-                            <li>
-                                <p>排序：</p>
-                                <input type="text" name="sort"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -80,6 +64,7 @@
         </div>
     </div>
     <th:block th:include="include :: footer" />
+
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('mall:advertise:edit')}]];
         var removeFlag = [[${@permission.hasPermi('mall:advertise:remove')}]];
@@ -107,11 +92,28 @@
                 },
                 {
                     field : 'type',
-                    title : '广告位置'
+                    title : '广告位置',
+                    formatter: function (value, row, index) {
+                        return row.type==0?"PC首页轮播":row.type==1?"APP首页轮播":"小程序首页轮播";
+                    }
                 },
                 {
                     field : 'pic',
-                    title : '广告图片'
+                    title : '广告图片',
+                    formatter: function (value, row, index) {
+                        if(row.pic!=null){
+                            // if(row.pic.indexOf("http://")!=-1||row.pic.indexOf("https://")!=-1){
+                            //     return '<img src="' +row.pic + '" width="50px" height="50px"> ';
+                            // }else{
+                            //     console.log(prefix);
+                            //     return '<img src="' +ctx+row.pic + '" width="50px" height="50px"> ';
+                            // }
+                            return '<img src="' +row.pic + '" width="50px" height="50px"> ';
+                        }
+                        else{
+                            return '<img src="#" width="50px" height="50px"> ';
+                        }
+                        }
                 },
                 {
                     field : 'startTime',
@@ -119,7 +121,7 @@
                 },
                 {
                     field : 'endTime',
-                    title : 'startTime'
+                    title : '广告结束时间'
                 },
                     {
                         visible: editFlag == 'hidden' ? false : true,
@@ -159,23 +161,23 @@
             };
             $.table.init(options);
         });
-        /* 用户状态显示 */
+        /* 广告状态改变 */
         function statusTools(row) {
-            if (row.status == 1) {
+            if (row.status == 0) {
                 return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.id + '\')"></i> ';
             } else {
                 return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.id + '\')"></i> ';
             }
         }
 
-        /* 用户管理-停用 */
+        /* 广告下线 */
         function disable(userId) {
             $.modal.confirm("确认要下线广告吗？", function () {
                 $.operate.post(prefix + "/changeStatus", {"id": userId, "status": 0});
             })
         }
 
-        /* 用户管理启用 */
+        /* 广告上线 */
         function enable(userId) {
             $.modal.confirm("确认要上线广告吗？", function () {
                 $.operate.post(prefix + "/changeStatus", {"id": userId, "status": 1});

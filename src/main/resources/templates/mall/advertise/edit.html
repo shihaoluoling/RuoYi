@@ -9,28 +9,28 @@
         <form class="form-horizontal m" id="form-advertise-edit" th:object="${smsHomeAdvertise}">
             <input name="id" th:field="*{id}" type="hidden">
             <div class="form-group">    
-                <label class="col-sm-3 control-label">排序：</label>
+                <label class="col-sm-3 control-label">轮播名称：</label>
                 <div class="col-sm-8">
                     <input name="name" th:field="*{name}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">轮播位置</label>
                 <div class="col-sm-8">
-                    <select name="type" class="form-control m-b">
+                    <select name="type" class="form-control m-b" th:with="type=${@dict.getType('advertise_location')}">
                         <option value="">所有</option>
+                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{type}"></option>
                     </select>
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">轮播图片</label>
                 <div class="col-sm-8">
                     <textarea name="pic" class="form-control">[[*{pic}]]</textarea>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">轮播开始时间</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">轮播位置：0->PC首页轮播；1->app首页轮播：</label>
+                <label class="col-sm-3 control-label">轮播结束时间</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -48,13 +48,12 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">上下线状态：0->下线；1->上线：</label>
+                <label class="col-sm-3 control-label">上下线状态</label>
                 <div class="col-sm-8">
-                    <div class="radio-box">
-                        <input type="radio" name="status" value="">
-                        <label th:for="status" th:text="未知"></label>
+                    <div class="radio-box" th:each="dict : ${@dict.getType('advertise_on_off')}">
+                        <input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}" th:field="*{status}">
+                        <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
                     </div>
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
                 </div>
             </div>
             <div class="form-group">    
