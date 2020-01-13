@@ -100,6 +100,14 @@
                         return statusTools(row);
                     }
                 },
+                {
+                    visible: editFlag == 'hidden' ? false : true,
+                    title: '精品店铺标识',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return boutiQueTools(row);
+                    }
+                },
 
                 {
                     field: 'expireTime',
@@ -179,6 +187,26 @@
     function enable(userId) {
         $.modal.confirm("确认要启用商户吗？", function () {
             $.operate.post(prefix + "/changeStatus", {"id": userId, "status": 1});
+        })
+    }
+    function boutiQueTools(row) {
+        if (row.isBoutique == 0) {
+            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enableBoutiQue(\'' + row.id + '\')"></i> ';
+        } else {
+            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disableBoutiQue(\'' + row.id + '\')"></i> ';
+        }
+    }
+    /* 精品标识-停用 */
+    function disableBoutiQue(userId) {
+        $.modal.confirm("确认要关闭此店铺精品标识吗？", function () {
+            $.operate.post(prefix + "/changeStatus", {"id": userId, "isBoutique": 0});
+        })
+    }
+
+    /* 精品标识启用 */
+    function enableBoutiQue(userId) {
+        $.modal.confirm("确认要启用此店铺精品标识吗？", function () {
+            $.operate.post(prefix + "/changeStatus", {"id": userId, "isBoutique": 1});
         })
     }
 </script>

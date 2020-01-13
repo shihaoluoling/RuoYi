@@ -269,4 +269,8 @@ public class Store extends BaseEntity {
      */
     @Excel(name = "添加会员数")
     private Integer memberCount;
+
+    /** 精品店铺标识,0:否，1:是 */
+    @Excel(name = "精品店铺标识,0:否，1:是")
+    private Integer isBoutique;
 }

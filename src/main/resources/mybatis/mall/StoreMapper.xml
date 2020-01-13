@@ -48,10 +48,11 @@
         <result property="orderCount"    column="order_count"    />
         <result property="payAmount"    column="pay_amount"    />
         <result property="articleCount"    column="article_count"    />
+        <result property="isBoutique"    column="is_boutique"    />
     </resultMap>
 
     <sql id="selectStoreVo">
-       select sms_quantity, register_type, expire_time, try_time, contact_mobile, address_province, buy_plan_times, create_time, is_checked, is_deleted, service_phone, address_lat, contact_name, delete_time, diy_profile, industry_two, is_star, is_try, logo, address_detail, plan_id, support_name, name, status, uid, type, contact_qq, address_lng, last_login_time, support_phone, address_area, contact_qrcode, description, industry_one, address_city, id, collect, hit, goods_count, member_count, order_count, pay_amount, article_count from sys_store
+       select sms_quantity, register_type, expire_time, try_time, contact_mobile, address_province, buy_plan_times, create_time, is_checked, is_deleted, service_phone, address_lat, contact_name, delete_time, diy_profile, industry_two, is_star, is_try, logo, address_detail, plan_id, support_name, name, status, uid, type, contact_qq, address_lng, last_login_time, support_phone, address_area, contact_qrcode, description, industry_one, address_city, id, collect, hit, goods_count, member_count, order_count, pay_amount, article_count,is_boutique from sys_store
     </sql>
 
     <select id="selectStoreList" parameterType="Store" resultMap="StoreResult">
@@ -238,6 +239,7 @@
             <if test="orderCount != null ">order_count = #{orderCount},</if>
             <if test="payAmount != null ">pay_amount = #{payAmount},</if>
             <if test="articleCount != null ">article_count = #{articleCount},</if>
+            <if test="isBoutique != null ">is_boutique = #{isBoutique},</if>
         </trim>
         where id = #{id}
     </update>
