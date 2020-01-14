@@ -105,6 +105,7 @@
                 AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
             </if>
         </where>
+        order by id desc
     </select>
 
     <select id="selectStoreById" parameterType="Long" resultMap="StoreResult">
