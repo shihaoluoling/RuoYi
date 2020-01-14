@@ -73,7 +73,7 @@ public class CommonController
      */
     @PostMapping("/common/upload")
     @ResponseBody
-    public AjaxResult uploadFile(@RequestParam("upload") MultipartFile file,@RequestParam(value = "baseDir",defaultValue = "") String baseDir) throws Exception
+    public AjaxResult uploadFile(@RequestParam("file") MultipartFile file,@RequestParam(value = "baseDir",defaultValue = "") String baseDir) throws Exception
     {
         try
         {
@@ -116,14 +116,23 @@ public class CommonController
 
     @PostMapping("/aliyun/upload")
     @ApiOperation("上传文件")
-    public Object upload(@RequestParam("file") MultipartFile file) throws Exception {
-        return AjaxResult.success(aliyunOSSUtil.upload(file));
+    @ResponseBody
+    public AjaxResult upload(@RequestParam("file") MultipartFile file) throws Exception {
+        try{
+            String url = aliyunOSSUtil.upload(file);
+            AjaxResult ajax = AjaxResult.success();
+            ajax.put("url", url);
+            return ajax;
+        }catch (Exception e){
+            return AjaxResult.error(e.getMessage());
+        }
     }
 
 
     @PostMapping("/aliyun/uploads")
     @ApiOperation("多文件上传文件")
-    public Object uploads(@RequestPart("file") MultipartFile[] file) throws Exception {
+    @ResponseBody
+    public AjaxResult uploads(@RequestPart("file") MultipartFile[] file) throws Exception {
         StringBuffer stringBuffer = new StringBuffer();
         if (file != null && file.length > 0) {
             for (int i = 0; i < file.length; i++) {

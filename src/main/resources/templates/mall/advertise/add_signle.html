@@ -110,16 +110,18 @@
 
         $("#fileinput-demo-1").fileinput({
             'theme': 'explorer-fas',
-            'uploadUrl': ctx +'aliyun/upload',
+            'uploadUrl': ctx +'common/upload',
             overwriteInitial: false,
             autoReplace:true,
             initialPreviewAsData: true,
             initialPreview: [//初始显示图片列表
-            ]
+            ],
+            uploadExtraData:{//额外参数，将不同的文件存放不同的目录下
+                "baseDir":"advertise"
+            }
         }).on("fileuploaded", function(event, data, previewId, index) {//上传成功回调
-            console.log(data.response);
             $("input[name='pic']").val(data.response.url);
-
+            console.log(data.response.url);
         });
 
     </script>
