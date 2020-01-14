@@ -141,30 +141,30 @@ public class SmsHomeAdvertiseController extends BaseController
         return toAjax(smsHomeAdvertiseService.changeStatus(smsHomeAdvertise));
     }
 
-    /**
-     * 轮播组件上传请求
-     */
-    @PostMapping("/uploadImg")
-    @ResponseBody
-    public AjaxResult uploadFile(@RequestParam("uploadImg") MultipartFile file) throws Exception
-    {
-        try
-        {
-            // 上传文件路径
-            String filePath = RuoYiConfig.getUploadPath();
-            // 上传并返回新文件名称
-            String fileName = FileUploadUtils.upload(filePath, file);
-            String url = serverConfig.getUrl() + fileName;
-            AjaxResult ajax = AjaxResult.success();
-            ajax.put("fileName", fileName);
-            ajax.put("url", url);
-            return ajax;
-        }
-        catch (Exception e)
-        {
-            return AjaxResult.error(e.getMessage());
-        }
-    }
+//    /**
+//     * 轮播组件上传请求
+//     */
+//    @PostMapping("/uploadImg")
+//    @ResponseBody
+//    public AjaxResult uploadFile(@RequestParam("uploadImg") MultipartFile file) throws Exception
+//    {
+//        try
+//        {
+//            // 上传文件路径
+//            String filePath = RuoYiConfig.getUploadPath();
+//            // 上传并返回新文件名称
+//            String fileName = FileUploadUtils.upload(filePath, file);
+//            String url = serverConfig.getUrl() + fileName;
+//            AjaxResult ajax = AjaxResult.success();
+//            ajax.put("fileName", fileName);
+//            ajax.put("url", url);
+//            return ajax;
+//        }
+//        catch (Exception e)
+//        {
+//            return AjaxResult.error(e.getMessage());
+//        }
+//    }
 
 
 }

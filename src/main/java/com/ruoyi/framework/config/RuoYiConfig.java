@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 读取项目相关配置
- * 
+ *
  * @author ruoyi
  */
 @Component
@@ -26,6 +26,21 @@ public class RuoYiConfig
 
     /** 上传路径 */
     private static String profile;
+
+
+    /**
+     * 资源映射路径
+     */
+    private static String resourceHandler;
+
+    public static String getResourceHandler() {
+        return resourceHandler;
+    }
+
+    public void setResourceHandler(String resourceHandler) {
+        RuoYiConfig.resourceHandler = resourceHandler;
+    }
+
 
     /** 获取地址开关 */
     private static boolean addressEnabled;
@@ -111,6 +126,7 @@ public class RuoYiConfig
      */
     public static String getUploadPath()
     {
-        return getProfile() + "/upload";
+        return getProfile() + "/upload/";
     }
+
 }

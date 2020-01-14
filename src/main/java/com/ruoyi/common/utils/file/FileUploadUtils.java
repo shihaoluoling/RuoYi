@@ -15,7 +15,7 @@ import com.ruoyi.framework.config.RuoYiConfig;
 
 /**
  * 文件上传工具类
- * 
+ *
  * @author ruoyi
  */
 public class FileUploadUtils
@@ -146,9 +146,11 @@ public class FileUploadUtils
 
     private static final String getPathFileName(String uploadDir, String fileName) throws IOException
     {
-        int dirLastIndex = uploadDir.lastIndexOf("/") + 1;
-        String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
-        String pathFileName = Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
+//        int dirLastIndex = uploadDir.indexOf(RuoYiConfig.getProfile()) + 1;
+//        String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
+//        String pathFileName = Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
+        String currentDir = uploadDir.replace(RuoYiConfig.getProfile(),"");
+        String pathFileName = Constants.RESOURCE_PREFIX + currentDir + "/" + fileName;
         return pathFileName;
     }
 
@@ -227,7 +229,7 @@ public class FileUploadUtils
 
     /**
      * 获取文件名的后缀
-     * 
+     *
      * @param file 表单文件
      * @return 后缀名
      */

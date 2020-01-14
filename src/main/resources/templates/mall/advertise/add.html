@@ -8,13 +8,13 @@
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-advertise-add">
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">轮播名称：</label>
                 <div class="col-sm-8">
                     <input name="name" class="form-control" type="text">
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">轮播位置</label>
                 <div class="col-sm-8">
                     <select name="type" class="form-control m-b" th:with="type=${@dict.getType('advertise_location')}">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">广告开始时间</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">广告结束时间</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">上下线状态</label>
                 <div class="col-sm-8">
                     <div class="radio-box" th:each="dict : ${@dict.getType('advertise_on_off')}">
@@ -73,7 +73,7 @@
                     <textarea name="note" class="form-control"></textarea>
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">排序：</label>
                 <div class="col-sm-8">
                     <input name="sort" class="form-control" type="text">
@@ -107,11 +107,12 @@
             minView: "month",
             autoclose: true
         });
-        var imgUrls = "";
+
         $("#fileinput-demo-1").fileinput({
             'theme': 'explorer-fas',
             'uploadUrl': ctx +'common/upload',
             overwriteInitial: false,
+            autoReplace:true,
             initialPreviewAsData: true,
             initialPreview: [//初始显示图片列表
             ],
@@ -119,9 +120,8 @@
                 "baseDir":"advertise"
             }
         }).on("fileuploaded", function(event, data, previewId, index) {//上传成功回调
-            imgUrls += data.response.url+",";
-            $("input[name='pic']").val(imgUrls.substr(0,imgUrls.length-1));
-            console.log(imgUrls.substr(0,imgUrls.length-1));
+            $("input[name='pic']").val(data.response.url);
+            console.log(data.response.url);
         });
 
     </script>
