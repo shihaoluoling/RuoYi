@@ -141,3 +141,49 @@ gen:
   autoRemovePre: true
   # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
   tablePrefix: sys_
+aliyun:
+  oss:
+    accessKeyId: 5Jii89BFukxmun5j
+    accessKeySecret: JvE9FcILlHu5gClmAJr89ZkEv00l9s
+    bucketName: yjlive160322
+    callback: http://localhost:8080/aliyun/oss/callback
+    dir:
+      prefix: mall/images/
+    endpoint: oss-cn-beijing.aliyuncs.com
+    maxSize: 10
+    policy:
+      expire: 300
+  sms:
+    accessKeyId: 5Jii89BFukxmun5j
+    accessKeySecret: JvE9FcILlHu5gClmAJr89ZkEv00l9s
+    day-count: 45
+    expire-minute: 2
+    sign:
+      name: 京怡君商贸
+    template:
+      code: SMS_164240312
+oss:
+  aliyun:
+    defalut:
+      accessKeyId: 5Jii89BFukxmun5j
+      accessKeySecret: JvE9FcILlHu5gClmAJr89ZkEv00l9s
+      bucketName: yjlive160322
+      endPoint: oss-cn-beijing.aliyuncs.com
+      prefix: web
+      styleName: ''
+    domain: http://yjlive160322.oss-cn-beijing.aliyuncs.com/
+    first:
+      accessKeyId: 5Jii89BFukxmun5j
+      accessKeySecret: JvE9FcILlHu5gClmAJr89ZkEv00l9s
+      bucketName: yjlive160322
+      endPoint: oss-cn-beijing.aliyuncs.com
+      prefix: web
+      styleName: ''
+    second:
+      accessKeyId: ʡ��...
+      accessKeySecret: ʡ��...
+      bucketName: peterjava
+      endPoint: oss-cn-beijing.aliyuncs.com
+      prefix: user
+      styleName: ''
+  type: 1

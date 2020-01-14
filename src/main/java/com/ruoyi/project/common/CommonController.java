@@ -2,14 +2,14 @@ package com.ruoyi.project.common;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.common.utils.OssAliyunUtil;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.utils.StringUtils;
@@ -29,6 +29,8 @@ public class CommonController
 {
     private static final Logger log = LoggerFactory.getLogger(CommonController.class);
 
+    @Autowired
+    OssAliyunUtil aliyunOSSUtil;
     @Autowired
     private ServerConfig serverConfig;
 
@@ -110,5 +112,24 @@ public class CommonController
         response.setHeader("Content-Disposition",
                 "attachment;fileName=" + FileUtils.setFileDownloadHeader(request, downloadName));
         FileUtils.writeBytes(downloadPath, response.getOutputStream());
+    }
+
+    @PostMapping("/aliyun/upload")
+    @ApiOperation("上传文件")
+    public Object upload(@RequestParam("file") MultipartFile file) throws Exception {
+        return AjaxResult.success(aliyunOSSUtil.upload(file));
+    }
+
+
+    @PostMapping("/aliyun/uploads")
+    @ApiOperation("多文件上传文件")
+    public Object uploads(@RequestPart("file") MultipartFile[] file) throws Exception {
+        StringBuffer stringBuffer = new StringBuffer();
+        if (file != null && file.length > 0) {
+            for (int i = 0; i < file.length; i++) {
+                stringBuffer.append(aliyunOSSUtil.upload(file[i]) + ",");
+            }
+        }
+        return AjaxResult.success(stringBuffer);
     }
 }
