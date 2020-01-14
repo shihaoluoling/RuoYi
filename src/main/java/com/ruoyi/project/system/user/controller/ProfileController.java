@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.user.controller;
 
+import com.ruoyi.common.utils.OssAliyunUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import com.ruoyi.project.system.user.service.IUserService;
 
 /**
  * 个人信息 业务处理
- * 
+ *
  * @author ruoyi
  */
 @Controller
@@ -37,6 +38,8 @@ public class ProfileController extends BaseController
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    OssAliyunUtil aliyunOSSUtil;
 
     @Autowired
     private PasswordService passwordService;
@@ -153,7 +156,8 @@ public class ProfileController extends BaseController
         {
             if (!file.isEmpty())
             {
-                String avatar = FileUploadUtils.upload(RuoYiConfig.getAvatarPath(), file);
+//                String avatar = FileUploadUtils.upload(RuoYiConfig.getAvatarPath(), file);
+                String avatar =aliyunOSSUtil.upload(file);
                 currentUser.setAvatar(avatar);
                 if (userService.updateUserInfo(currentUser) > 0)
                 {
