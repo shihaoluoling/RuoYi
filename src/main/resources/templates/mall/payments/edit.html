@@ -7,50 +7,51 @@
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-payments-edit" th:object="${omsPayments}">
             <input name="id" th:field="*{id}" type="hidden">
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">支付类型编码：</label>
                 <div class="col-sm-8">
                     <input name="code" th:field="*{code}" class="form-control" type="text">
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">支付类型名称：</label>
                 <div class="col-sm-8">
                     <input name="name" th:field="*{name}" class="form-control" type="text">
                 </div>
             </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">是否线上支付 1=线上支付 2=线下支付：</label>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">是否线上支付：</label>
                 <div class="col-sm-8">
                     <input name="isOnline" th:field="*{isOnline}" class="form-control" type="text">
                 </div>
             </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">参数：</label>
-                <div class="col-sm-8">
-                    <input name="paramss" th:field="*{paramss}" class="form-control" type="text" required>
-                </div>
-            </div>
-            <div class="form-group">    
+
+            <div class="form-group">
                 <label class="col-sm-3 control-label">排序：</label>
                 <div class="col-sm-8">
                     <input name="sort" th:field="*{sort}" class="form-control" type="text" required>
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">支付方式描述：</label>
                 <div class="col-sm-8">
                     <input name="memo" th:field="*{memo}" class="form-control" type="text" required>
                 </div>
             </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">启用状态 1=启用 2=停用：</label>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">启用状态：</label>
                 <div class="col-sm-8">
                     <div class="radio-box">
                         <input type="radio" name="status" value="" required>
                         <label th:for="status" th:text="未知"></label>
                     </div>
                     <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">参数：</label>
+                <div class="col-xs-10">
+                    <textarea name="paramss" maxlength="500" class="form-control" rows="3">[[*{paramss}]]</textarea>
                 </div>
             </div>
         </form>

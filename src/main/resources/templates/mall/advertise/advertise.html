@@ -16,6 +16,10 @@
                                 <input type="text" name="name"/>
                             </li>
                             <li>
+                                <p>店铺编号：</p>
+                                <input type="text" name="storeId"/>
+                            </li>
+                            <li>
                                 <p>轮播位置</p>
                                 <select name="type" th:with="type=${@dict.getType('advertise_location')}">
                                     <option value="">所有</option>
@@ -144,6 +148,10 @@
                     field : 'url',
                     title : '链接地址'
                 },
+                    {
+                        field : 'storeId',
+                        title : '店铺'
+                    },
                 {
                     field : 'sort',
                     title : '排序'

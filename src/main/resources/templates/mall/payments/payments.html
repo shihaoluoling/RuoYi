@@ -50,18 +50,19 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="mall:payments:add">
-                    <i class="fa fa-plus"></i> 添加
-                </a>
+
                 <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="mall:payments:edit">
                     <i class="fa fa-edit"></i> 修改
+                </a>
+               <!-- <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="mall:payments:add">
+                    <i class="fa fa-plus"></i> 添加
                 </a>
                 <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="mall:payments:remove">
                     <i class="fa fa-remove"></i> 删除
                 </a>
                 <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="mall:payments:export">
                     <i class="fa fa-download"></i> 导出
-                 </a>
+                 </a>-->
             </div>
             <div class="col-sm-12 select-table table-striped">
                 <table id="bootstrap-table" data-mobile-responsive="true"></table>
@@ -86,20 +87,20 @@
                     checkbox: true
                 },
                 {
-                    field : 'id', 
+                    field : 'id',
                     title : 'null',
                     visible: false
                 },
                 {
-                    field : 'code', 
+                    field : 'code',
                     title : '支付类型编码'
                 },
                 {
-                    field : 'name', 
+                    field : 'name',
                     title : '支付类型名称'
                 },
                 {
-                    field : 'isOnline', 
+                    field : 'isOnline',
                     title : '是否线上支付 1=线上支付 2=线下支付'
                 },
                 // {
@@ -107,15 +108,15 @@
                 //     title : '参数'
                 // },
                 {
-                    field : 'sort', 
+                    field : 'sort',
                     title : '排序'
                 },
                 {
-                    field : 'memo', 
+                    field : 'memo',
                     title : '支付方式描述'
                 },
                 {
-                    field : 'status', 
+                    field : 'status',
                     title : '启用状态 1=启用 2=停用'
                 },
                 {
