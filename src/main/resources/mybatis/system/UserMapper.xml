@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from admin_sys_user u
 			 left join admin_sys_dept d on u.dept_id = d.dept_id
 			 left join admin_sys_user_role ur on u.user_id = ur.user_id
-			 left join sys_role r on r.role_id = ur.role_id
+			 left join admin_sys_role r on r.role_id = ur.role_id
     </sql>
 
 	<select id="selectUserList" parameterType="User" resultMap="UserResult">
